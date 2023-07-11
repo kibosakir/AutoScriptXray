@@ -2,7 +2,6 @@
 # cari apa 
 # harta tahta hanya sementara ingat masih ada kehidupan setelah kematian
 # jangan lupa sholat
-# install 2x auto block
 clear
 red='\e[1;31m'
 green='\e[0;32m'
@@ -19,7 +18,7 @@ yellow() { echo -e "\\033[33;1m${*}\\033[0m"; }
 green() { echo -e "\\033[32;1m${*}\\033[0m"; }
 red() { echo -e "\\033[31;1m${*}\\033[0m"; }
 # domain random
-#CDN="https://raw.githubusercontent.com/kibosakir/AutoScriptXray/master/ssh"
+#CDN="https://raw.githubusercontent.com/givpn/AutoScriptXray/master/ssh"
 cd /root
 #System version number
 if [ "${EUID}" -ne 0 ]; then
@@ -106,22 +105,11 @@ echo -e "[ ${BGreen}INFO${NC} ] Aight good ... installation file is ready"
 sleep 0.5
 echo -ne "[ ${BGreen}INFO${NC} ] Check permission : "
 
-2
+echo -e "$BGreen Permission Accepted..$NC"
+sleep 2
 
 mkdir -p /var/lib/ >/dev/null 2>&1
 echo "IP=" >> /var/lib/ipvps.conf
-if [ -f "/etc/xray/domain" ]; then
-echo ""
-echo -e "[ ${green}INFO${NC} ] Script Siap Diinstall"
-echo -ne "[ ${yell}WARNING${NC} ] Apakah Anda Ingin Mulai Menginstall? (y/n)? "
-read answer
-if [ "$answer" == "${answer#[Yy]}" ] ;then
-rm -rf setup.sh
-sleep 1
-exit 0
-else
-clear
-fi
 echo ""
 clear
 echo -e "$BBlue                           SETUP SUBDOMAIN VPS     $NC"
@@ -141,17 +129,14 @@ echo -e "$BYellow---------------------------------------------------------------
 #bash /root/cf | tee /root/install.log
 #print_success "Domain Random Done"
 #elif test $dns -eq 2; then
-read -rp "Enter Your Subdomain / Masukan Subdomain : " -e dom
-if [ -z $dom ]; then
-echo -e "Nothing input for domain.."
-else
+echo ""
+read -rp "Enter Your Subdomain / Masukan Subdomain : " dom
 echo "IP=$dom" > /var/lib/ipvps.conf
 echo "$dom" > /root/scdomain
 echo "$dom" > /etc/xray/scdomain
 echo "$dom" > /etc/xray/domain
 echo "$dom" > /etc/v2ray/domain
 echo $dom > /root/domain
-if
 echo -e "${BGreen}Done..${NC}"
 sleep 2
 clear
@@ -162,15 +147,15 @@ echo -e "$BGreen      Install SSH Websocket           $NC"
 echo -e "\e[33m-----------------------------------\033[0m"
 sleep 0.5
 clear
-wget https://raw.githubusercontent.com/kibosakir/AutoScriptXray/master/ssh/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
+wget https://raw.githubusercontent.com/givpn/AutoScriptXray/master/ssh/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
 #Instal Xray
 echo -e "\e[33m-----------------------------------\033[0m"
 echo -e "$BGreen          Install XRAY              $NC"
 echo -e "\e[33m-----------------------------------\033[0m"
 sleep 0.5
 clear
-wget https://raw.githubusercontent.com/kibosakir/AutoScriptXray/master/xray/ins-xray.sh && chmod +x ins-xray.sh && ./ins-xray.sh
-wget https://raw.githubusercontent.com/kibosakir/AutoScriptXray/master/sshws/insshws.sh && chmod +x insshws.sh && ./insshws.sh
+wget https://raw.githubusercontent.com/givpn/AutoScriptXray/master/xray/ins-xray.sh && chmod +x ins-xray.sh && ./ins-xray.sh
+wget https://raw.githubusercontent.com/givpn/AutoScriptXray/master/sshws/insshws.sh && chmod +x insshws.sh && ./insshws.sh
 clear
 cat> /root/.profile << END
 # ~/.profile: executed by Bourne-compatible login shells.
@@ -209,7 +194,7 @@ if [ ! -f "/etc/log-create-shadowsocks.log" ]; then
 echo "Log Shadowsocks Account " > /etc/log-create-shadowsocks.log
 fi
 history -c
-serverV=$( curl -sS https://raw.githubusercontent.com/kibosakir/AutoScriptXray/master/menu/versi  )
+serverV=$( curl -sS https://raw.githubusercontent.com/givpn/AutoScriptXray/master/menu/versi  )
 echo $serverV > /opt/.ver
 aureb=$(cat /home/re_otm)
 b=11
@@ -257,7 +242,7 @@ echo "   - Trojan gRPC              : 443" | tee -a log-install.txt
 echo "   - Shadowsocks gRPC         : 443" | tee -a log-install.txt
 echo ""
 echo "=============================Contact==============================" | tee -a log-install.txt
-echo "---------------------------t.me/joysmark-----------------------------" | tee -a log-install.txt
+echo "---------------------------t.me/givpn-----------------------------" | tee -a log-install.txt
 echo "==================================================================" | tee -a log-install.txt
 echo -e ""
 echo ""
@@ -271,5 +256,4 @@ echo " Auto reboot in 10 Seconds "
 sleep 10
 rm -f setup.sh
 reboot
-
 
