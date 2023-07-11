@@ -2,7 +2,6 @@
 # cari apa 
 # harta tahta hanya sementara ingat masih ada kehidupan setelah kematian
 # jangan lupa sholat
-# install 2x auto block
 clear
 red='\e[1;31m'
 green='\e[0;32m'
@@ -111,18 +110,6 @@ sleep 2
 
 mkdir -p /var/lib/ >/dev/null 2>&1
 echo "IP=" >> /var/lib/ipvps.conf
-if [ -f "/etc/xray/domain" ]; then
-echo ""
-echo -e "[ ${green}INFO${NC} ] Script Siap Diinstall"
-echo -ne "[ ${yell}WARNING${NC} ] Apakah Anda Ingin Mulai Menginstall? (y/n)? "
-read answer
-if [ "$answer" == "${answer#[Yy]}" ] ;then
-rm -rf setup.sh
-sleep 1
-exit 0
-else
-clear
-fi
 echo ""
 clear
 echo -e "$BBlue                           SETUP SUBDOMAIN VPS     $NC"
@@ -142,17 +129,14 @@ echo -e "$BYellow---------------------------------------------------------------
 #bash /root/cf | tee /root/install.log
 #print_success "Domain Random Done"
 #elif test $dns -eq 2; then
-read -rp "Enter Your Subdomain / Masukan Subdomain : " -e dom
-if [ -z $dom ]; then
-echo -e "Nothing input for domain.."
-else
+echo ""
+read -rp "Enter Your Subdomain / Masukan Subdomain : " dom
 echo "IP=$dom" > /var/lib/ipvps.conf
 echo "$dom" > /root/scdomain
 echo "$dom" > /etc/xray/scdomain
 echo "$dom" > /etc/xray/domain
 echo "$dom" > /etc/v2ray/domain
 echo $dom > /root/domain
-if
 echo -e "${BGreen}Done..${NC}"
 sleep 2
 clear
@@ -258,7 +242,7 @@ echo "   - Trojan gRPC              : 443" | tee -a log-install.txt
 echo "   - Shadowsocks gRPC         : 443" | tee -a log-install.txt
 echo ""
 echo "=============================Contact==============================" | tee -a log-install.txt
-echo "---------------------------t.me/givpn-----------------------------" | tee -a log-install.txt
+echo "---------------------------t.me/joysmark-----------------------------" | tee -a log-install.txt
 echo "==================================================================" | tee -a log-install.txt
 echo -e ""
 echo ""
@@ -272,5 +256,4 @@ echo " Auto reboot in 10 Seconds "
 sleep 10
 rm -f setup.sh
 reboot
-
 
